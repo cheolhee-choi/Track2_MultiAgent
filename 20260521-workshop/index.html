@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>멀티 에이전트 오케스트레이션 대시보드</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .dashboard-shell {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+      grid-template-areas:
+        "agent agent"
+        "task log"
+        "strategy log";
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #dbe3ef;
+      border-radius: 16px;
+      padding: 1rem;
+      min-height: 180px;
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .panel h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .panel .empty-state {
+      margin: 0;
+      padding: 0.9rem 1rem;
+      border: 1px dashed #c7d2e5;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #64748b;
+    }
+
+    #agent-cards {
+      grid-area: agent;
+    }
+
+    #task-list {
+      grid-area: task;
+    }
+
+    #log-panel {
+      grid-area: log;
+    }
+
+    #strategy-checklist {
+      grid-area: strategy;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-shell {
+        grid-template-areas:
+          "agent"
+          "task"
+          "log"
+          "strategy";
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">본문으로 이동</a>
+
+  <header class="panel" role="banner">
+    <h1>멀티 에이전트 오케스트레이션 대시보드</h1>
+    <p class="empty-state">에이전트 상태와 흐름을 모니터링하는 전용 화면입니다.</p>
+  </header>
+
+  <main id="main-content" tabindex="-1" class="dashboard-shell" aria-label="대시보드 본문">
+    <section id="agent-cards" class="panel" aria-labelledby="agent-cards-title">
+      <h2 id="agent-cards-title">에이전트 카드 그리드</h2>
+      <p class="empty-state">표시할 에이전트 카드가 없습니다.</p>
+    </section>
+
+    <section id="task-list" class="panel" aria-labelledby="task-list-title">
+      <h2 id="task-list-title">작업 상태 목록</h2>
+      <p class="empty-state">표시할 작업 상태가 없습니다.</p>
+    </section>
+
+    <aside id="log-panel" class="panel" aria-labelledby="log-panel-title">
+      <h2 id="log-panel-title">로그 / 메모 패널</h2>
+      <p class="empty-state">기록된 로그와 메모가 없습니다.</p>
+    </aside>
+
+    <aside id="strategy-checklist" class="panel" aria-labelledby="strategy-checklist-title">
+      <h2 id="strategy-checklist-title">모델 전략 체크리스트</h2>
+      <p class="empty-state">확인할 전략 항목이 없습니다.</p>
+    </aside>
+  </main>
+
+  <footer class="panel" role="contentinfo">
+    <p class="empty-state">v1 — 모니터링 전용</p>
+  </footer>
+
+  <script src="data/mock.js"></script>
+  <script src="js/agent-cards.js"></script>
+  <script src="js/task-list.js"></script>
+  <script src="js/log-panel.js"></script>
+  <script src="js/strategy.js"></script>
+  <script src="js/state.js"></script>
+</body>
+</html>
